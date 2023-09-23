@@ -6,35 +6,35 @@ on:
       - main
 
 jobs:
-    ecr-deployer:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      
-      - name: Get services changed files
-        id: changed-service-files
-        uses: tj-actions/changed-files@v35
-        with:
-          files: src/services/*
-          dir_names: true
-          files_ignore: src/services/*.yaml
-      
-      - name: Build and Send Events
-        shell: bash
-        run: |
-            pip install PyYAML
-            pip install boto3
-            for file in ${{ steps.changed-service-files.outputs.all_changed_files }}; do
-              aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 778424175012.dkr.ecr.us-east-1.amazonaws.com
-              docker build -t $file .
-              docker tag $file:latest 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$file
-              docker push 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$file
-            done
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: us-east-1
+        
+        - name: Get services changed files
+          id: changed-service-files
+          uses: tj-actions/changed-files@v35
+          with:
+            files: src/services/*
+            dir_names: true
+            files_ignore: src/services/*.yaml
+        
+        - name: Build and Send Events
+          shell: bash
+          run: |
+              pip install PyYAML
+              pip install boto3
+              for file in ${{ steps.changed-service-files.outputs.all_changed_files }}; do
+                aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 778424175012.dkr.ecr.us-east-1.amazonaws.com
+                docker build -t $file .
+                docker tag $file:latest 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$file
+                docker push 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$file
+              done
