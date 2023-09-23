@@ -1,6 +1,9 @@
 name: ecr-deployment
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
     ecr-deployer:
