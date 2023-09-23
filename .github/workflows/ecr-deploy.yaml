@@ -31,9 +31,10 @@ jobs:
           shell: bash
           run: |
               for file in ${{ steps.changed-service-files.outputs.all_changed_files }}; do
-                image_name=echo $(basename $file)
+                image_name=$(basename $file)
+                echo $image_name
                 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 778424175012.dkr.ecr.us-east-1.amazonaws.com
-                docker build -t image_name .
-                docker tag image_name:latest 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$file
-                docker push 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:image_name
+                docker build -t $image_name .
+                docker tag $image_name:latest 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$image_name
+                docker push 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$image_name
               done
