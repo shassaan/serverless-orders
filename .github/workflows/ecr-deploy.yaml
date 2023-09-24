@@ -34,7 +34,7 @@ jobs:
                 image_version=$(yq '.version' "$file/config.yaml")
                 tag="$image_name-$image_version"
                 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 778424175012.dkr.ecr.us-east-1.amazonaws.com
-                docker build -t $tag .
+                docker build -t $tag --build-arg SERVICE_NAME=$image_name .
                 docker tag $tag:latest 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$tag
                 docker push 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$tag
               done
