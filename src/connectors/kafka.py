@@ -15,6 +15,13 @@ class KafkaProducer:
     
     def publish(self):
         self.producer.flush()
+
+    def delivery_report(self, err, msg):
+        if err is not None:
+            # Handle failed message
+            print(f"Delivery failed for message {msg}: {err}")
+        else:
+            print(f"Message delivered to {msg.topic()} [{msg.partition()}] at offset {msg.offset()}")    
     
     def enqueue(self, topic, value, key=None, timestamp=None):
         if key and timestamp:
