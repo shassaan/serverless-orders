@@ -1,0 +1,13 @@
+name:
+version:
+kafka_trigger:
+  
+db:
+  endpoint:
+  name:
+  username:
+  password:
+kafka:
+  endpoint:
+  topic:
+

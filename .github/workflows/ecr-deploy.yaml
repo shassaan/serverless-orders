@@ -23,18 +23,18 @@ jobs:
           id: changed-service-files
           uses: tj-actions/changed-files@v35
           with:
-            files: src/services/*
+            files: services/*
             dir_names: true
-            files_ignore: src/services/*.yaml
         
         - name: Build and push image
           shell: bash
           run: |
               for file in ${{ steps.changed-service-files.outputs.all_changed_files }}; do
-                image_name=$(basename $file)
-                echo $image_name
+                image_name=$(yq '.name' "$file/config.yaml")
+                image_version=$(yq '.version' "$file/config.yaml")
+                tag="$image_name-$image_version"
                 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 778424175012.dkr.ecr.us-east-1.amazonaws.com
-                docker build -t $image_name .
-                docker tag $image_name:latest 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$image_name
-                docker push 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$image_name
+                docker build -t $tag .
+                docker tag $tag:latest 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$tag
+                docker push 778424175012.dkr.ecr.us-east-1.amazonaws.com/orders-management-ecr:$tag
               done
