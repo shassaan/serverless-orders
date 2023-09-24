@@ -22,8 +22,7 @@ module "ecr" {
   source = "./aws/ecr"
   name   = "orders-management-ecr"
 }
-
 module "lambda" {
-  source = "./aws/lambda"
+  source          = "./aws/lambda"
   msk_cluster_arn = "arn:aws:kafka:us-east-1:778424175012:cluster/orders-process-kafka-cluster/6eeef708-2893-4d91-bec8-4797297bd857-10"
 }

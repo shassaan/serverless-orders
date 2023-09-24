@@ -1,10 +1,9 @@
 name: get_customer_orders_service
-version: 1.0.0
+version: 1.0.1
+is_api: true
 db:
-  endpoint:
-  name:
-  username:
-  password:
-kafka:
-  endpoint:
-  topic:
+  endpoint: order-processing-rds.cu13msmnkxn8.us-east-1.rds.amazonaws.com
+  port: 5432
+  name: customer_orders
+  username: dev
+  password: aws/secretsmanager/db/customer_orders/password

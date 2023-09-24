@@ -1,13 +1,7 @@
 name: create_order_service
-version: 1.0.0
-kafka_trigger:
-  
-db:
-  endpoint:
-  name:
-  username:
-  password:
+version: 1.0.1
+is_api: true
 kafka:
-  endpoint:
-  topic:
+  endpoint: b-1.ordersprocesskafkaclu.7289xs.c10.kafka.us-east-1.amazonaws.com:9094,b-2.ordersprocesskafkaclu.7289xs.c10.kafka.us-east-1.amazonaws.com:9094
+  topic: orders
 

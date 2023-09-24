@@ -1,10 +1,15 @@
 name: process_order_service
-version: 1.0.0
+version: 1.0.1
+kafka_trigger: 
+  topic: orders
+  batch_size: 1
+  consumer_group_id: 551C6134-0B07-416C-95BF-77442C28F877
 db:
-  endpoint:
-  name:
-  username:
-  password:
+  endpoint: order-processing-rds.cu13msmnkxn8.us-east-1.rds.amazonaws.com
+  port: 5432
+  name: customer_orders
+  username: dev
+  password: aws/secretsmanager/db/customer_orders/password
 kafka:
-  endpoint:
-  topic:
+  endpoint: b-1.ordersprocesskafkaclu.7289xs.c10.kafka.us-east-1.amazonaws.com:9094,b-2.ordersprocesskafkaclu.7289xs.c10.kafka.us-east-1.amazonaws.com:9094
+  topic: products
