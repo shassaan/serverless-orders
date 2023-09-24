@@ -9,4 +9,4 @@ db:
   port: 5432
   name: products_info
   username: dev
-  password: aws/secretsmanager/db/products_info/password
+  password: aws/secretsmanager/db/products_info/password20230924183723841700000002

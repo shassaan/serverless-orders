@@ -26,3 +26,15 @@ module "lambda" {
   source          = "./aws/lambda"
   msk_cluster_arn = "arn:aws:kafka:us-east-1:778424175012:cluster/orders-process-kafka-cluster/6eeef708-2893-4d91-bec8-4797297bd857-10"
 }
+
+module "secret_manager_products" {
+  source       = "./aws/secrets_manager"
+  secret_name  = "db/products_info/password"
+  secret_value = "Admin123**"
+}
+
+module "secret_manager_customers" {
+  source       = "./aws/secrets_manager"
+  secret_name  = "db/customer_orders/password"
+  secret_value = "Admin123**"
+}

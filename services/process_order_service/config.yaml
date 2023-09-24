@@ -9,7 +9,7 @@ db:
   port: 5432
   name: customer_orders
   username: dev
-  password: aws/secretsmanager/db/customer_orders/password
+  password: aws/secretsmanager/db/customer_orders/password20230924183723841600000001
 kafka:
   endpoint: b-1.ordersprocesskafkaclu.7289xs.c10.kafka.us-east-1.amazonaws.com:9094,b-2.ordersprocesskafkaclu.7289xs.c10.kafka.us-east-1.amazonaws.com:9094
   topic: products
