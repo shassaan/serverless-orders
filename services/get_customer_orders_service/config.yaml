@@ -1,5 +1,5 @@
-name:
-version:
+name: get_customer_orders
+version: 1.0.0
 db:
   endpoint:
   name:

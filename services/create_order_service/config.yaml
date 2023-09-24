@@ -1,5 +1,5 @@
-name:
-version:
+name: create_order_service
+version: 1.0.0
 kafka_trigger:
   
 db:

@@ -1,5 +1,5 @@
-name:
-version:
+name: process_order_service
+version: 1.0.0
 db:
   endpoint:
   name:
