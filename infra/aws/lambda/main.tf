@@ -13,6 +13,10 @@ locals {
   services_with_apis          = { for k, service in local.services : k => service if service.is_api == true }
 }
 
+output "name" {
+  value = local.services_with_apis
+}
+
 resource "aws_lambda_function" "this" {
   for_each      = local.services
   description   = "Lambda function for ${each.key}"
@@ -39,6 +43,6 @@ resource "aws_lambda_event_source_mapping" "event_source_mapping" {
 
 resource "aws_lambda_function_url" "lambda_url" {
   for_each           = local.services_with_apis
-  function_name      = "${each.key}-function"
+  function_name      = aws_lambda_function.this[each.key].function_name
   authorization_type = "NONE"
 }
