@@ -25,6 +25,7 @@ def run(event, context):
       print(e)
       status_code = 500
       message = "Sorry mate, some exception occured!!"
+      raise
 
   return {
       "status_code": status_code,
