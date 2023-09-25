@@ -1,6 +1,7 @@
 import json
 from src.connectors.kafka import KafkaProducer
 import yaml
+import datetime
 
 def run(event, context):
   with open("services/create_order_service/config.yaml") as f:
@@ -16,7 +17,7 @@ def run(event, context):
           request_body = json.loads(event['body'])
 
           kakfa = KafkaProducer(hosts=config['kafka']['endpoint'])
-          kakfa.enqueue(config['kafka']['topic'],value=json.dumps(request_body))
+          kakfa.enqueue(topic=config['kafka']['topic'],key=request_body["id"],timestamp=datetime.datetime.now().timestamp(),value=json.dumps(request_body))
           kakfa.publish()
           status_code = 200
           message = f"Your POST request was successfull with body {request_body}"

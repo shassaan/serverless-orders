@@ -16,6 +16,15 @@ resource "aws_msk_cluster" "orders_process_kafka_cluster" {
     }
     security_groups = var.security_groups
   }
+
+  logging_info {
+    broker_logs {
+      cloudwatch_logs {
+        enabled = true
+        log_group = "/aws/lambda/test-function"
+      }
+    }
+  }
 }
 
 resource "aws_msk_configuration" "this" {
