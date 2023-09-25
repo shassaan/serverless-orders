@@ -1,7 +1,7 @@
 name: create_order_service
-version: 1.0.7
+version: 1.0.8
 is_api: true
 kafka:
-  endpoint: b-1.ordersprocesskafkaclu.7289xs.c10.kafka.us-east-1.amazonaws.com:9094,b-2.ordersprocesskafkaclu.7289xs.c10.kafka.us-east-1.amazonaws.com:9094
+  endpoint: b-1.ordersprocesskafkaclu.o23kam.c10.kafka.us-east-1.amazonaws.com:9094,b-2.ordersprocesskafkaclu.o23kam.c10.kafka.us-east-1.amazonaws.com:9094
   topic: orders
 

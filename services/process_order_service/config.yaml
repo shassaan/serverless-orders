@@ -1,5 +1,5 @@
 name: process_order_service
-version: 1.0.1
+version: 1.0.2
 kafka_trigger: 
   topic: orders
   batch_size: 1
@@ -11,5 +11,5 @@ db:
   username: dev
   password: aws/secretsmanager/db/customer_orders/password20230924183723841600000001
 kafka:
-  endpoint: b-1.ordersprocesskafkaclu.7289xs.c10.kafka.us-east-1.amazonaws.com:9094,b-2.ordersprocesskafkaclu.7289xs.c10.kafka.us-east-1.amazonaws.com:9094
+  endpoint: b-1.ordersprocesskafkaclu.o23kam.c10.kafka.us-east-1.amazonaws.com:9094,b-2.ordersprocesskafkaclu.o23kam.c10.kafka.us-east-1.amazonaws.com:9094
   topic: products

@@ -24,7 +24,7 @@ module "ecr" {
 }
 module "lambda" {
   source          = "./aws/lambda"
-  msk_cluster_arn = "arn:aws:kafka:us-east-1:778424175012:cluster/orders-process-kafka-cluster/6eeef708-2893-4d91-bec8-4797297bd857-10"
+  msk_cluster_arn = "arn:aws:kafka:us-east-1:778424175012:cluster/orders-process-kafka-cluster/19b8155a-8b81-4d23-8418-4b77e23ff49a-10"
 }
 
 module "secret_manager_products" {
