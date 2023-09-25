@@ -2,7 +2,7 @@ name: update_stock_service
 version: 1.0.1
 kafka_trigger: 
   topic: products
-  batch_size: 1
+  batch_size: 10
   consumer_group_id: BE055B57-1DE9-435F-89C8-B0C1D5E541E0
 db:
   endpoint: order-processing-rds.cu13msmnkxn8.us-east-1.rds.amazonaws.com

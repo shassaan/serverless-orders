@@ -44,6 +44,7 @@ resource "aws_lambda_event_source_mapping" "event_source_mapping" {
   batch_size                         = each.value.batch_size
   topics                             = [each.value.topic]
   starting_position                  = "TRIM_HORIZON"
+  maximum_batching_window_in_seconds = 300
   amazon_managed_kafka_event_source_config {
     consumer_group_id = each.value.consumer_group_id
   }

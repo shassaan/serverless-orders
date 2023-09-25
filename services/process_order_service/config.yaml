@@ -2,7 +2,7 @@ name: process_order_service
 version: 1.0.3
 kafka_trigger: 
   topic: orders
-  batch_size: 1
+  batch_size: 10
   consumer_group_id: 551C6134-0B07-416C-95BF-77442C28F877
 db:
   endpoint: order-processing-rds.cu13msmnkxn8.us-east-1.rds.amazonaws.com
