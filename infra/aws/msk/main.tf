@@ -21,7 +21,6 @@ resource "aws_msk_cluster" "orders_process_kafka_cluster" {
 resource "aws_msk_configuration" "this" {
   kafka_versions = [var.ver]
   name           = "config"
-
   server_properties = <<PROPERTIES
 auto.create.topics.enable = true
 delete.topic.enable = true

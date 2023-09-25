@@ -25,6 +25,15 @@ resource "aws_lambda_function" "this" {
   package_type  = "Image"
   role          = "arn:aws:iam::778424175012:role/msk-lambda-role"
   timeout       = 900 # 15 min (max)
+  vpc_config {
+    security_group_ids = [
+      "sg-072d455c09e408e5d",
+    ]
+    subnet_ids = [
+      "subnet-018d446df94efb583",
+      "subnet-07e85a63aca846f8a",
+    ]
+  }
 }
 
 
@@ -35,7 +44,6 @@ resource "aws_lambda_event_source_mapping" "event_source_mapping" {
   batch_size                         = each.value.batch_size
   topics                             = [each.value.topic]
   starting_position                  = "TRIM_HORIZON"
-  maximum_batching_window_in_seconds = 300
   amazon_managed_kafka_event_source_config {
     consumer_group_id = each.value.consumer_group_id
   }
